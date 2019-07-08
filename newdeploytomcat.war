@@ -1,14 +1,13 @@
 node {
    def mvnHome
    stage('Preparation') {
-      git url: 'https://github.com/prayagupd/eccount-rest.git', branch: 'REST-API-load-balancing'
+      git url: 'https://github.com/patelapeksha/my-app.git', branch: 'master'
       mvnHome = tool 'Maven'
    }
    stage('Build') {
       sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
    }
    stage('Results') {
-      junit '**/target/surefire-reports/TEST-*.xml'
       archive 'target/*.jar'
    }
 }
